@@ -19,6 +19,26 @@ public:
     }
 };
 
+//Top-Down(Tabulation)
+//T.C : O(n)
+//S.C : O(n)
+class Solution {
+public:
+    long long Mod=1e9+7;
+    
+    int numTilings(int n) {
+        if(n<=2)
+            return n;
+        vector<long long>dp(n+1,0);
+        dp[1]=1;
+        dp[2]=2;
+        dp[3]=5;
+        for(int i=4;i<=n;i++)
+            dp[i]=(dp[i-3]%Mod+2*dp[i-1]%Mod)%Mod;
+        return dp[n]%Mod;
+    }
+};
+
 /*
     You have two types of tiles: a 2 x 1 domino shape and a tromino shape. You may rotate these shapes.  
     Given an integer n, return the number of ways to tile an 2 x n board. Since the answer may be very large, return it modulo 109 + 7.
