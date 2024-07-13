@@ -1,3 +1,33 @@
+//Top-Down(Memoization)
+//T.C : O(n*m)
+//S.C : O(n*m)
+class Solution {
+  public:
+    int result=0;
+    int dp[501][501];
+    int solve(int i,int j,vector<vector<int>>&mat){
+        if(i>=mat.size() || j>=mat[0].size())
+            return 0;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        int right=solve(i,j+1,mat);
+        int diagonal=solve(i+1,j+1,mat);
+        int down=solve(i+1,j,mat);
+        if(mat[i][j]==1){
+            dp[i][j]=1+min({right,down,diagonal});
+            result=max(result,dp[i][j]);
+            return dp[i][j];
+        }
+        else
+            return dp[i][j]=0;
+    }
+    int maxSquare(int n, int m, vector<vector<int>> mat) {
+        memset(dp,-1,sizeof dp);
+        solve(0,0,mat);
+        return result;
+    }
+};
+
 //Bottom-Up(Tabulation)
 class Solution {
   public:
