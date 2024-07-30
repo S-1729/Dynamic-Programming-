@@ -47,6 +47,5 @@ public:
 	It appears twice as explained below.
 	
 	T.C : O(n*n)
-  S.C : O(n*n)
-  
+  	S.C : O(n*n)
 */
